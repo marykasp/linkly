@@ -35,6 +35,12 @@ users_to_insert =
       email: "bob@example.com",
       inserted_at: DateTime.utc_now(),
       updated_at: DateTime.utc_now()
+    ],
+    [
+      username: "linda",
+      email: "linda@example.com",
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
     ]
   ]
 
@@ -66,9 +72,86 @@ bookmarks_to_insert =
     ]
   ]
 
+tags_to_insert =
+  [
+    [
+      title: "Business",
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      title: "Coding",
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      title: "Elixir",
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      title: "Podcast",
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      title: "Projects",
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      title: "Resource",
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+  ]
+
+# three way join table
+link_tags_to_insert =
+  [
+    [
+      link_id: 1,
+      user_id: 1,
+      tag_id: 3,
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      link_id: 2,
+      user_id: 2,
+      tag_id: 1,
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      link_id: 2,
+      user_id: 2,
+      tag_id: 4,
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      link_id: 1,
+      user_id: 3,
+      tag_id: 5,
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+    [
+      link_id: 2,
+      user_id: 3,
+      tag_id: 3,
+      inserted_at: DateTime.utc_now(),
+      updated_at: DateTime.utc_now()
+    ],
+  ]
+
+
 Repo.insert_all "users", users_to_insert, returning: [:id, :username]
 Repo.insert_all "links", links_to_insert, returning: [:id, :url]
 Repo.insert_all "bookmarks", bookmarks_to_insert
+Repo.insert_all "tags", tags_to_insert
+Repo.insert_all "link_tags", link_tags_to_insert
 
 third_user = %User{
   username: "sam",
